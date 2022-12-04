@@ -11,15 +11,16 @@ export const Home = () => {
   const searchValue = useSelector((state) => state.search.searchValue);
 
   const { status, pizzas } = useSelector((state) => state.pizza);
-  console.log(status);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { categoryId, activeSort } = useSelector((state) => state.filter);
-  const category = categoryId > 0 ? `category=${categoryId}` : "";
+  const { category, activeSort } = useSelector((state) => state.filter);
+  const categoryId = category > 0 ? `category=${category}` : "";
 
   useEffect(() => {
-    dispatch(fetchPizzas({ category, activeSort }));
+    console.log(categoryId);
+    dispatch(fetchPizzas({ categoryId, activeSort }));
     const queryString = qs.stringify({
       activeSort: activeSort.PropType,
       categoryId,

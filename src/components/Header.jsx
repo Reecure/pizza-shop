@@ -6,8 +6,12 @@ import logo from "../assets/img/pizza-logo.svg";
 import { setSearchValue } from "../redux/slices/searchSlice";
 
 export const Header = () => {
+  const { items } = useSelector((state) => state.cart);
   const searchValue = useSelector((state) => state.search.searchValue);
   const dispatch = useDispatch();
+
+  let totalPrice = 0;
+  items.map((item) => (totalPrice += item.price));
 
   return (
     <div className="header">
@@ -29,7 +33,7 @@ export const Header = () => {
         </div>
         <div className="header__cart">
           <Link to="/cart" className="button button--cart">
-            <span>520 ₴</span>
+            <span>{totalPrice} ₴</span>
             <div className="button__delimiter"></div>
             <svg
               width="18"
@@ -60,7 +64,7 @@ export const Header = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            <span>3</span>
+            <span>{items.length}</span>
           </Link>
         </div>
       </div>

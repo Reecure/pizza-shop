@@ -2,7 +2,19 @@
 - cart
 - Buisness-logic in pizzaSlice
 - adaptive for search
-
+- debounce
+- refactor cart (total price)
 
 -bugs
+
+category doesn`t change
+
 bug in sort by alphabet on backend with cyrillic
+
+
+
+-------------------------------------------------------
+
+Cart realization
+
+
