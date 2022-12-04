@@ -1,0 +1,8 @@
+- skeleton mb later
+- cart
+- Buisness-logic in pizzaSlice
+- adaptive for search
+
+
+-bugs
+bug in sort by alphabet on backend with cyrillic

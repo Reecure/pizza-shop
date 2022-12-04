@@ -1,47 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PizzaBlock from "../components/PizzaBlock";
 import Sort from "../components/Sort";
 import Categories from "../components/Categories";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPizzas } from "../redux/slices/pizzaSlice";
 
 export const Home = () => {
   const searchValue = useSelector((state) => state.search.searchValue);
 
+  const { status, pizzas } = useSelector((state) => state.pizza);
+  console.log(status);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { categoryId, activeSort } = useSelector((state) => state.filter);
   const category = categoryId > 0 ? `category=${categoryId}` : "";
 
-  const [pizzas, setPizzas] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const getPizzas = async () => {
-    try {
-      const data = await axios.get(
-        `https://637a7c2b10a6f23f7f94e973.mockapi.io/item?${category}&sortBy=${activeSort.PropType}&order=asc`
-      );
-      if (data.status === 200) {
-        setPizzas(data.data);
-        setLoading(false);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
-    getPizzas();
-    console.log(pizzas);
+    dispatch(fetchPizzas({ category, activeSort }));
     const queryString = qs.stringify({
       activeSort: activeSort.PropType,
       categoryId,
     });
     navigate(`?${queryString}`);
-  }, [activeSort, categoryId, category, loading]);
+  }, [activeSort, categoryId, category]);
 
   return (
     <>
@@ -52,7 +36,7 @@ export const Home = () => {
         </div>
         <h2 className="content__title">Все пиццы</h2>
         <div className="content__items">
-          {loading ? (
+          {status === "loading" ? (
             <div>Loading</div>
           ) : (
             pizzas
