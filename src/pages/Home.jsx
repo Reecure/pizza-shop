@@ -9,18 +9,16 @@ import { fetchPizzas } from "../redux/slices/pizzaSlice";
 
 export const Home = () => {
   const searchValue = useSelector((state) => state.search.searchValue);
-
+  const { categoryId, activeSort } = useSelector((state) => state.filter);
   const { status, pizzas } = useSelector((state) => state.pizza);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { category, activeSort } = useSelector((state) => state.filter);
-  const categoryId = category > 0 ? `category=${category}` : "";
+  const category = categoryId > 0 ? `category=${categoryId}` : "";
 
   useEffect(() => {
-    console.log(categoryId);
-    dispatch(fetchPizzas({ categoryId, activeSort }));
+    dispatch(fetchPizzas({ category, activeSort }));
     const queryString = qs.stringify({
       activeSort: activeSort.PropType,
       categoryId,
