@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setActiveCategory } from "../redux/slices/filterSlice";
 
 function Categories() {
-  const activeCategory = useSelector((state) => state.filter.categoryId);
+  const activeCategory = useSelector((state: any) => state.filter.categoryId);
   const dispatch = useDispatch();
 
   const mock = [
@@ -16,7 +16,7 @@ function Categories() {
     "Закрытые",
   ];
 
-  const categoryHandler = (index) => {
+  const categoryHandler = (index: number) => {
     dispatch(setActiveCategory(index));
   };
 

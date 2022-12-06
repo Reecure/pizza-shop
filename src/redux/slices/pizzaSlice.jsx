@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { IFilter } from "../../types/types";
 
 export const fetchPizzas = createAsyncThunk(
   "pizza/fetchPizza",

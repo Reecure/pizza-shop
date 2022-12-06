@@ -6,6 +6,7 @@ import qs from "qs";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPizzas } from "../redux/slices/pizzaSlice";
+import { IPizza } from "../types/types";
 
 export const Home = () => {
   const searchValue = useSelector((state) => state.search.searchValue);

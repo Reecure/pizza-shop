@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { nanoid } from "@reduxjs/toolkit";
@@ -6,7 +5,7 @@ import { CartItem } from "../components/CartItem";
 import { clearCart } from "../redux/slices/cartSlice";
 
 export const Cart = () => {
-  const { items, count } = useSelector((state) => state.cart);
+  const { items } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const clearCartHandler = () => {
