@@ -7,7 +7,7 @@ function Categories() {
   const activeCategory = useSelector((state: any) => state.filter.categoryId);
   const dispatch = useDispatch();
 
-  const mock = [
+  const mock: string[] = [
     "Все",
     "Мясные",
     "Вегетарианская",

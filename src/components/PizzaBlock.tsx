@@ -1,13 +1,20 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addItem } from "../redux/slices/cartSlice";
+import { IPizza } from "../types/types";
 
-function PizzaBlock({ imageUrl, name, price, sizes, types }) {
+const PizzaBlock: React.FC<IPizza> = ({
+  imageUrl,
+  name,
+  price,
+  sizes,
+  types,
+}) => {
   const dispatch = useDispatch();
 
   const [typeActive, setTypeActive] = useState(0);
   const [sizeActive, setSizeActive] = useState(0);
-  const typesName = ["тонкое", "традиционное"];
+  const typesName: string[] = ["тонкое", "традиционное"];
 
   const addToCartHandler = () => {
     dispatch(addItem({ name, price }));
@@ -69,6 +76,6 @@ function PizzaBlock({ imageUrl, name, price, sizes, types }) {
       </div>
     </div>
   );
-}
+};
 
 export default PizzaBlock;
