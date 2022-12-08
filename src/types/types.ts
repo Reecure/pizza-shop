@@ -3,11 +3,16 @@ export interface IPizza {
   imageUrl: string;
   name: string;
   price: number;
-  sizes: {};
-  types: {};
+  sizes: [];
+  types: [];
 }
 
 export interface IFilter {
   category: string;
   activeSort: string;
 }
+
+export type listType = {
+  name: string;
+  PropType: "rating" | "price" | "title";
+};

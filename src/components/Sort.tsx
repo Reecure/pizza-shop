@@ -1,20 +1,22 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveSort } from "../redux/slices/filterSlice";
+import { RootState } from "../redux/store";
+import { listType } from "../types/types";
 
 function Sort() {
-  const activeSort = useSelector((state) => state.filter.activeSort);
+  const activeSort = useSelector((state: RootState) => state.filter.activeSort);
 
   const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
-  const list = [
+  const list: listType[] = [
     { name: "популярности", PropType: "rating" },
     { name: "цене", PropType: "price" },
     { name: "алфавиту", PropType: "title" },
   ];
 
-  const activeHandler = (i) => {
+  const activeHandler = (i: listType) => {
     dispatch(setActiveSort(i));
     setOpen(false);
   };

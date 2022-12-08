@@ -7,11 +7,16 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPizzas } from "../redux/slices/pizzaSlice";
 import { IPizza } from "../types/types";
+import { RootState } from "../redux/store";
 
 export const Home = () => {
-  const searchValue = useSelector((state) => state.search.searchValue);
-  const { categoryId, activeSort } = useSelector((state) => state.filter);
-  const { status, pizzas } = useSelector((state) => state.pizza);
+  const searchValue = useSelector(
+    (state: RootState) => state.search.searchValue
+  );
+  const { categoryId, activeSort } = useSelector(
+    (state: RootState) => state.filter
+  );
+  const { status, pizzas } = useSelector((state: RootState) => state.pizza);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -19,6 +24,7 @@ export const Home = () => {
   const category = categoryId > 0 ? `category=${categoryId}` : "";
 
   useEffect(() => {
+    //@ts-ignore
     dispatch(fetchPizzas({ category, activeSort }));
     const queryString = qs.stringify({
       activeSort: activeSort.PropType,
@@ -40,10 +46,10 @@ export const Home = () => {
             <div>Loading</div>
           ) : (
             pizzas
-              .filter((item) =>
+              .filter((item: IPizza) =>
                 item.name.toLowerCase().includes(searchValue.toLowerCase())
               )
-              .map((pizza) => {
+              .map((pizza: IPizza) => {
                 return <PizzaBlock key={pizza.id} {...pizza} />;
               })
           )}

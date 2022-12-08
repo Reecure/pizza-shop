@@ -1,6 +1,7 @@
 import React from "react";
+import { IPizza } from "../types/types";
 
-export const CartItem = ({ name, price }) => {
+export const CartItem: React.FC<IPizza> = ({ name, price }) => {
   return (
     <div className="cart__item">
       <div className="cart__item-img">

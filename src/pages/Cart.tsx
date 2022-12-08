@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { nanoid } from "@reduxjs/toolkit";
 import { CartItem } from "../components/CartItem";
 import { clearCart } from "../redux/slices/cartSlice";
+import { RootState } from "../redux/store";
+import { IPizza } from "../types/types";
 
 export const Cart = () => {
-  const { items } = useSelector((state) => state.cart);
+  const { items } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
 
   const clearCartHandler = () => {
@@ -13,7 +14,7 @@ export const Cart = () => {
   };
 
   let totalPrice = 0;
-  items.map((item) => (totalPrice += item.price));
+  items.map((item: IPizza) => (totalPrice += item.price));
 
   return (
     <div className="cart">
@@ -92,8 +93,8 @@ export const Cart = () => {
         </div>
       </div>
       <div>
-        {items.map((item) => (
-          <CartItem key={nanoid} {...item} />
+        {items.map((item: IPizza) => (
+          <CartItem key={item.id} {...item} />
         ))}
       </div>
       <div className="cart__bottom">
