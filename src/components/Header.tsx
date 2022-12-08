@@ -4,11 +4,14 @@ import { Link } from "react-router-dom";
 
 import logo from "../assets/img/pizza-logo.svg";
 import { setSearchValue } from "../redux/slices/searchSlice";
+import { RootState } from "../redux/store";
 import { IPizza } from "../types/types";
 
 export const Header = () => {
-  const { items } = useSelector((state: any) => state.cart);
-  const searchValue = useSelector((state: any) => state.search.searchValue);
+  const { items } = useSelector((state: RootState) => state.cart);
+  const searchValue = useSelector(
+    (state: RootState) => state.search.searchValue
+  );
   const dispatch = useDispatch();
 
   let totalPrice = 0;

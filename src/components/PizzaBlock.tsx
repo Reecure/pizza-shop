@@ -17,7 +17,7 @@ const PizzaBlock: React.FC<IPizza> = ({
   const typesName: string[] = ["тонкое", "традиционное"];
 
   const addToCartHandler = () => {
-    dispatch(addItem({ name, price }));
+    dispatch(addItem({ name, price, imageUrl, sizes, types }));
   };
 
   return (

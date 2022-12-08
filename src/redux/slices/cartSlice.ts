@@ -1,6 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IPizza } from "../../types/types";
 
-const initialState = {
+interface itemState {
+  items: IPizza[];
+}
+
+const initialState: itemState = {
   items: [],
 };
 
@@ -8,7 +13,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItem(state, action) {
+    addItem(state, action: PayloadAction<IPizza>) {
       state.items.push(action.payload);
     },
     clearCart(state) {

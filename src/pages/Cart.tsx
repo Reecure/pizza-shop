@@ -2,10 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { CartItem } from "../components/CartItem";
 import { clearCart } from "../redux/slices/cartSlice";
+import { RootState } from "../redux/store";
 import { IPizza } from "../types/types";
 
 export const Cart = () => {
-  const { items } = useSelector((state: any) => state.cart);
+  const { items } = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
 
   const clearCartHandler = () => {

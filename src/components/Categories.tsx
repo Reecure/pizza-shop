@@ -2,9 +2,12 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveCategory } from "../redux/slices/filterSlice";
+import { RootState } from "../redux/store";
 
 function Categories() {
-  const activeCategory = useSelector((state: any) => state.filter.categoryId);
+  const activeCategory = useSelector(
+    (state: RootState) => state.filter.categoryId
+  );
   const dispatch = useDispatch();
 
   const mock: string[] = [

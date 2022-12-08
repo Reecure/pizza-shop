@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveSort } from "../redux/slices/filterSlice";
-
-type listType = {
-  name: string;
-  PropType: string;
-};
+import { RootState } from "../redux/store";
+import { listType } from "../types/types";
 
 function Sort() {
-  const activeSort = useSelector((state: any) => state.filter.activeSort);
+  const activeSort = useSelector((state: RootState) => state.filter.activeSort);
 
   const dispatch = useDispatch();
 

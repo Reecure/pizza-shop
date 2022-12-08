@@ -7,11 +7,16 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPizzas } from "../redux/slices/pizzaSlice";
 import { IPizza } from "../types/types";
+import { RootState } from "../redux/store";
 
 export const Home = () => {
-  const searchValue = useSelector((state: any) => state.search.searchValue);
-  const { categoryId, activeSort } = useSelector((state: any) => state.filter);
-  const { status, pizzas } = useSelector((state: any) => state.pizza);
+  const searchValue = useSelector(
+    (state: RootState) => state.search.searchValue
+  );
+  const { categoryId, activeSort } = useSelector(
+    (state: RootState) => state.filter
+  );
+  const { status, pizzas } = useSelector((state: RootState) => state.pizza);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
