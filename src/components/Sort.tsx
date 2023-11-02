@@ -11,9 +11,9 @@ function Sort() {
 
   const [open, setOpen] = useState(false);
   const list: listType[] = [
-    { name: "популярности", PropType: "rating" },
-    { name: "цене", PropType: "price" },
-    { name: "алфавиту", PropType: "title" },
+    { name: "rating", PropType: "rating" },
+    { name: "price", PropType: "price" },
+    { name: "title", PropType: "title" },
   ];
 
   const activeHandler = (i: listType) => {
@@ -35,7 +35,7 @@ function Sort() {
             fill="#2C2C2C"
           />
         </svg>
-        <b>Сортировка по:</b>
+        <b>Sort by:</b>
         <span
           onClick={() => {
             setOpen(!open);

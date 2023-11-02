@@ -11,12 +11,12 @@ function Categories() {
   const dispatch = useDispatch();
 
   const mock: string[] = [
-    "Все",
-    "Мясные",
-    "Вегетарианская",
-    "Гриль",
-    "Острые",
-    "Закрытые",
+      "All",
+      "Meat",
+      "Vegetarian",
+      "Grilled",
+      "Spicy",
+      "Closed"
   ];
 
   const categoryHandler = (index: number) => {

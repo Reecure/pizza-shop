@@ -1,22 +1,39 @@
 import React from "react";
-import { IPizza } from "../types/types";
+import {addItem, CartPizza, decreaseItem, removeItem} from "../redux/slices/cartSlice";
+import {typesName} from "./PizzaBlock";
+import {useDispatch} from "react-redux";
 
-export const CartItem: React.FC<IPizza> = ({ name, price }) => {
-  return (
+export const CartItem: React.FC<CartPizza> = ({id, name, price, counter, imageUrl, size, type }) => {
+
+    const dispatch = useDispatch()
+
+    return (
     <div className="cart__item">
       <div className="cart__item-img">
         <img
           className="pizza-block__image"
-          src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+          src={imageUrl}
           alt="Pizza"
         />
       </div>
       <div className="cart__item-info">
         <h3>{name}</h3>
-        <p>тонкое тесто, 26 см.</p>
+        <p>{typesName[type]}, {size} cm.</p>
       </div>
       <div className="cart__item-count">
-        <div className="button button--outline button--circle cart__item-count-minus">
+
+        <div className="button button--outline button--circle cart__item-count-minus"
+             onClick={() => {
+                 dispatch(decreaseItem({
+                     id,
+                     name,
+                     price,
+                     imageUrl,
+                     size: size,
+                     type: type,
+                 }))
+             }}
+        >
           <svg
             width="10"
             height="10"
@@ -34,8 +51,22 @@ export const CartItem: React.FC<IPizza> = ({ name, price }) => {
             />
           </svg>
         </div>
-        <b>1</b>
-        <div className="button button--outline button--circle cart__item-count-plus">
+
+        <b>{counter}</b>
+
+        <button
+            className="button button--outline button--circle cart__item-count-plus"
+            onClick={() => {
+                dispatch(addItem({
+                    id,
+                    name,
+                    price,
+                    imageUrl,
+                    size: size,
+                    type: type,
+                }));
+            }}
+        >
           <svg
             width="10"
             height="10"
@@ -52,13 +83,18 @@ export const CartItem: React.FC<IPizza> = ({ name, price }) => {
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </button>
       </div>
+
       <div className="cart__item-price">
-        <b>{price} ₴</b>
+        <b>{price * (counter || 1)} ₴</b>
       </div>
+
       <div className="cart__item-remove">
-        <div className="button button--outline button--circle">
+        <button className="button button--outline button--circle" onClick={() => dispatch(removeItem(
+            {
+            id, type, size ,counter, name, price, imageUrl
+        }))}>
           <svg
             width="10"
             height="10"
@@ -75,7 +111,7 @@ export const CartItem: React.FC<IPizza> = ({ name, price }) => {
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </button>
       </div>
     </div>
   );

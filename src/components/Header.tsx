@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import logo from "../assets/img/pizza-logo.svg";
 import { setSearchValue } from "../redux/slices/searchSlice";
 import { RootState } from "../redux/store";
-import { IPizza } from "../types/types";
 
 export const Header = () => {
   const { items } = useSelector((state: RootState) => state.cart);
@@ -15,7 +14,7 @@ export const Header = () => {
   const dispatch = useDispatch();
 
   let totalPrice = 0;
-  items.map((item: IPizza) => (totalPrice += item.price));
+  items.map((item) => (totalPrice += item.price * (item.counter || 1)));
 
   return (
     <div className="header">
@@ -24,7 +23,7 @@ export const Header = () => {
           <img width="38" src={logo} alt="Pizza logo" />
           <Link to="/">
             <div>
-              <h1>React Pizza</h1>
+              <h1>Pizza</h1>
             </div>
           </Link>
         </div>

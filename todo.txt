@@ -1,26 +1,2 @@
-----------------------Realize------------------------------
-
--------Tier-S---------------------
-- cart
-- delete item by id from cart 
-- Buisness-logic in pizzaSlice(complete)
-- debounce
--------Tier-2---------------------
-- skeleton mb later
-- adaptive for search
-- refactor cart (total price)
-
-
-----------------------Bugs---------------------------------
-
-category doesn`t change(fixed)
-
-bug in sort by alphabet on backend with cyrillic
-
-
-
--------------------------------------------------------
-
-Cart realization
 
 

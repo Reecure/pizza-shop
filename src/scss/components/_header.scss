@@ -11,7 +11,7 @@
   }
   &__search {
     input {
-      width: 300px;
+      max-width: 300px;
       height: 50px;
       padding: 10px 20px;
       font-size: 20px;
@@ -44,3 +44,36 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .header {
+  .container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  &__search {
+    input {
+      max-width: 250px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__logo {
+    flex-direction: row;
+
+    img {
+      margin-bottom: 0;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+  }
+  }
+}
+
+
+
+
+

@@ -9,7 +9,7 @@ type filterState = {
 const initialState: filterState = {
   categoryId: 0,
   activeSort: {
-    name: "популярности",
+    name: "rating",
     PropType: "rating",
   },
 };
