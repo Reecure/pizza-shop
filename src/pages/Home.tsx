@@ -16,6 +16,7 @@ export const Home = () => {
   const { categoryId, activeSort } = useSelector(
     (state: RootState) => state.filter
   );
+
   const { status, pizzas } = useSelector((state: RootState) => state.pizza);
 
   const navigate = useNavigate();
@@ -24,13 +25,20 @@ export const Home = () => {
   const category = categoryId > 0 ? `category=${categoryId}` : "";
 
   useEffect(() => {
-    //@ts-ignore
-    dispatch(fetchPizzas({ category, activeSort }));
-    const queryString = qs.stringify({
-      activeSort: activeSort.PropType,
-      categoryId,
-    });
-    navigate(`?${queryString}`);
+      const fetchData = async () => {
+          try {
+              //@ts-ignore
+              await dispatch(fetchPizzas({ category, activeSort }));
+              const queryString = qs.stringify({
+                  activeSort: activeSort.PropType,
+                  categoryId,
+              });
+              navigate(`?${queryString}`);
+          } catch (error) {
+              console.error("Error fetching pizzas:", error);
+          }
+      };
+      fetchData();
   }, [activeSort, categoryId, category]);
 
   return (
@@ -43,7 +51,7 @@ export const Home = () => {
         <h2 className="content__title">All pizzas</h2>
         <div className="content__items">
           {status === "loading" ? (
-            <div>Loading</div>
+            <div>Loading...</div>
           ) : (
             pizzas
               .filter((item: IPizza) =>
