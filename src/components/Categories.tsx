@@ -1,5 +1,3 @@
-//import styles from "./Categories.module.scss";
-
 import { useDispatch, useSelector } from "react-redux";
 import { setActiveCategory } from "../redux/slices/filterSlice";
 import { RootState } from "../redux/store";
