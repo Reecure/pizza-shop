@@ -26,6 +26,7 @@ export const Home = () => {
 
   useEffect(() => {
       const fetchData = async () => {
+          console.log(category)
           try {
               //@ts-ignore
               await dispatch(fetchPizzas({ category, activeSort }));
